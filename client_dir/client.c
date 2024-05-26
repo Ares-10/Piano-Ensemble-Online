@@ -1,16 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <pthread.h>
-#include "minilibx/mlx.h"
-
-#define PORT 8080
-
-# define KEY_PRESS		2
-# define DESTROY_NOTIFY	17
-# define ESC			53
+#include "client.h"
 
 typedef struct s_data
 {
@@ -35,11 +23,10 @@ static int	close_callback(void);
 static int	key_press(int keycode, t_data *data);
 static void	keycode_to_note(int keycode, char *note);
 
-int main(int argc, char *argv[])
+int main(void)
 {
     int                 sock;
     struct sockaddr_in  server;
-    char                server_reply[2000];
     pthread_t           recv_thread;
 
     // 소켓 생성
@@ -182,35 +169,36 @@ void keycode_to_note(int keycode, char *note)
 void sound(char *note)
 {
     int scale;
-    for (int i = 0; i < strlen(note); i++)
+
+    for (unsigned long i = 0; i < strlen(note); i++)
     {
         scale = note[i] - '0';
 
         switch (scale)
         {
         case 1:
-            system("afplay sound/do.wav &");
+            system("afplay sound/A.wav &");
             break;
         case 2:
-            system("afplay sound/re.wav &");
+            system("afplay sound/B.wav &");
             break;
         case 3:
-            system("afplay sound/mi.wav &");
+            system("afplay sound/C.wav &");
             break;
         case 4:
-            system("afplay sound/fa.wav &");
+            system("afplay sound/D.wav &");
             break;
         case 5:
-            system("afplay sound/sol.wav &");
+            system("afplay sound/E.wav &");
             break;
         case 6:
-            system("afplay sound/la.wav &");
+            system("afplay sound/F.wav &");
             break;
         case 7:
-            system("afplay sound/si.wav &");
+            system("afplay sound/G.wav &");
             break;
         case 8:
-            system("afplay sound/do_high.wav &");
+            system("afplay sound/A_high.wav &");
             break;
         default:
             printf("잘못된 입력입니다. 1~8 사이의 숫자를 입력해주세요.\n");

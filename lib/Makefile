@@ -1,8 +1,8 @@
-NAME = project
+NAME = lib
 
-SUBDIRS =	lib			\
-			client_dir	\
-			server_dir	\
+SUBDIRS = src/minilibx
+
+CFLAGS = -c -Wall -Wextra -Werror
 
 
 all : $(NAME)
@@ -10,17 +10,16 @@ all : $(NAME)
 $(NAME) :
 	for DIRS in $(SUBDIRS); do	\
 		$(MAKE) -C $$DIRS;		\
+		cp $$DIRS/*.a . ;		\
 	done
-	cp client_dir/client .
-	cp server_dir/server .
 
 clean :
 	for DIRS in $(SUBDIRS); do		\
-		$(MAKE) -C $$DIRS fclean;	\
+		$(MAKE) -C $$DIRS clean;	\
 	done
 
 fclean : clean
-	rm -rf server client
+	rm -rf *.a
 
 re : fclean all
 
