@@ -78,20 +78,21 @@ void    start_application(int sock)
 
 int key_press(int keycode, t_data *data)
 {
-	if (keycode >= 18 && keycode <= 28)
-	{
-		keycode_to_note(keycode, data->note);
+    if (keycode >= 18 && keycode <= 28)
+    {
+        keycode_to_note(keycode, data->note);
         sound(data->note);
-		if (send(data->sock, data->note, 1, 0) < 0)
-            puterr("Send failed\n");
-		printf("Client input: %s\n", data->note);
-	}
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	return (0);
+        if ((data->note)[0] != '\0')
+            if (send(data->sock, data->note, 1, 0) < 0)
+                puterr("Send failed\n");
+        printf("Client input: %s\n", data->note);
+    }
+    if (keycode == ESC)
+    {
+        mlx_destroy_window(data->mlx, data->win);
+        exit(0);
+    }
+    return (0);
 }
 
 int	close_callback(void)
