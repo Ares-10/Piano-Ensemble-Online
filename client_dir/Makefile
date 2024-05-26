@@ -1,6 +1,7 @@
 NAME = client
 
 SRCS = 	client.c 		\
+		utils.c			\
 
 OBJS = $(SRCS:.c=.o)
 
