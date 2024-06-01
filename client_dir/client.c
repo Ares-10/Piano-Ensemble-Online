@@ -3,7 +3,7 @@
 static void	*message_handler(void *);
 static void	start_application(int sock);
 static int	close_callback(void);
-static int	key_press(int keycode, t_data *data);
+static int	key_press(int keycode, data_t *data);
 
 int main(void)
 {
@@ -66,7 +66,7 @@ void *message_handler(void *socket_desc)
 // 본인이 입력한 음계
 void    start_application(int sock)
 {
-    t_data	data;
+    data_t	data;
 
     init_mlx(&data, sock);
 	printf("Enter message: \n");
@@ -76,7 +76,7 @@ void    start_application(int sock)
 	exit(0);
 }
 
-int key_press(int keycode, t_data *data)
+int key_press(int keycode, data_t *data)
 {
     if (keycode >= 18 && keycode <= 28)
     {

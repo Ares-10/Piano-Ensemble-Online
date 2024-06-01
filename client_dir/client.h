@@ -16,7 +16,7 @@
 # define DESTROY_NOTIFY	17
 # define ESC			53
 
-typedef struct s_data
+typedef struct data_s
 {
 	void	*mlx;
 	void	*win;
@@ -29,11 +29,11 @@ typedef struct s_data
 	int		endian;
 	int		sock;
 	char	*note;
-}	t_data;
+}	data_t;
 
 void	puterr(char *msg);
 void	keycode_to_note(int keycode, char *note);
 void	sound(char *note);
-void	init_mlx(t_data *data, int sock);
+void	init_mlx(data_t *data, int sock);
 
 #endif

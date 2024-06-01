@@ -10,8 +10,10 @@ void puterr(char *msg)
 void sound(char *note)
 {
     int scale;
+    int len;
 
-    for (unsigned long i = 0; i < strlen(note); i++)
+    len = strlen(note);
+    for (unsigned long i = 0; i < len; i++)
     {
         scale = note[i] - '0';
 
@@ -47,7 +49,7 @@ void sound(char *note)
     }
 }
 
-void	init_mlx(t_data *data, int sock)
+void	init_mlx(data_t *data, int sock)
 {
 	data->win_width = 720;
 	data->win_height = 480;
