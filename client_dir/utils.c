@@ -13,7 +13,7 @@ void sound(char *note)
     int len;
 
     len = strlen(note);
-    for (unsigned long i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
         scale = note[i] - '0';
 
